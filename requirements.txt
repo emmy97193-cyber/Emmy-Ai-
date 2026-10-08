@@ -1,2 +1,4 @@
-together
+
+discord.py
+flask
 python-dotenv
