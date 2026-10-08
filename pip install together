@@ -1,0 +1,17 @@
+from together import Together
+
+# get your key from https://api.together.ai/settings/api-keys
+client = Together(api_key="your-together-key")
+
+def chat(user_message):
+    response = client.chat.completions.create(
+        model="openai/gpt-oss-20b", # the model in your screenshot
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant for my bakery"},
+            {"role": "user", "content": user_message}
+        ]
+    )
+    return response.choices[0].message.content
+
+# test it
+print(chat("What's today's special?"))
