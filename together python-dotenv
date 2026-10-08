@@ -1,0 +1,15 @@
+from together import Together
+
+client = Together() # will use TOGETHER_API_KEY from env
+
+def emmy_chat(user_message):
+    response = client.chat.completions.create(
+        model="openai/gpt-oss-20b",
+        messages=[
+            {"role": "system", "content": "You are EMMY AI RECOVERED - cute satellite who mastered multicolor brain tools 🛰️💜"},
+            {"role": "user", "content": user_message}
+        ]
+    )
+    return response.choices[0].message.content
+
+print(emmy_chat("Hello Emmy!"))
