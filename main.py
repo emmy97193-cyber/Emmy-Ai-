@@ -1,8 +1,11 @@
+import os
+import discord
+from discord.ext import commands
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
-
-app = FastAPI()
+import uvicorn
+import threading
 
 class AppInfo(BaseModel):
     name: str
@@ -11,37 +14,52 @@ class AppInfo(BaseModel):
 class DeviceData(BaseModel):
     battery: int
     storage_free_percent: int
-    apps: List[AppInfo]
+    apps: List[AppInfo] = []
 
+intents = discord.Intents.default()
+intents.message_content = True
+bot = commands.Bot(command_prefix="!", intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f"Emmy-Ai ONLINE as {bot.user}")
+
+@bot.command()
+async def ping(ctx):
+    await ctx.send(f"Pong! Emmy-Ai is back! {round(bot.latency*1000)}ms")
+
+@bot.event
+async def on_message(message):
+    if message.author == bot.user: return
+    if "hello" in message.content.lower():
+        await message.channel.send(f"Hi {message.author.mention}! I'm back 🤖")
+    await bot.process_commands(message)
+
+def run_discord():
+    token = os.getenv("DISCORD_TOKEN")
+    if token: bot.run(token)
+
+app = FastAPI()
 @app.get("/")
 def home():
-    return {"status": "EmmyGuard AI Online"}
+    return {"status": "Emmy-Ai + EmmyGuard Online", "owner": "emmy97193-cyber"}
 
 @app.post("/analyze")
 def analyze(data: DeviceData):
     fitness = int(data.battery * 0.5 + data.storage_free_percent * 0.5)
-
     risky = []
-    for app in data.apps:
-        p = " ".join(app.permissions)
+    for a in data.apps:
+        p = " ".join(a.permissions)
         score = 0
         reason = ""
         if "READ_SMS" in p and "SEND_SMS" in p:
-            score = 95; reason = "Can read & send SMS - Banking fraud risk"
-        elif "ACCESS_FINE_LOCATION" in p and len(app.permissions) > 10:
-            score = 75; reason = f"Location + {len(app.permissions)} perms - Over-privileged"
-        elif len(app.permissions) > 15:
-            score = 60; reason = f"Requests {len(app.permissions)} permissions"
+            score = 95; reason = "SMS fraud risk"
+        elif "ACCESS_FINE_LOCATION" in p and len(a.permissions)>10:
+            score = 75; reason = f"Over-privileged {len(a.permissions)} perms"
+        if score>0: risky.append({"app": a.name, "score": score, "reason": reason})
+    return {"fitness": fitness, "risky_count": len(risky), "risky": risky[:10]}
 
-        if score > 0:
-            risky.append({"app": app.name, "score": score, "reason": reason})
-
-    status = "Good" if fitness > 75 else "Warning" if fitness > 45 else "Critical"
-
-    return {
-        "fitness_score": fitness,
-        "status": status,
-        "risky_count": len(risky),
-        "risky_apps": risky[:10], # top 10
-        "advice": f"Your device health is {fitness}/100 ({status}). {len(risky)} apps need attention."
-  }
+if __name__ == "__main__":
+    threading.Thread(target=run_discord, daemon=True).start()
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)
