@@ -43,9 +43,8 @@ async def identify(ctx):
  await ctx.send(
   "**Green Tree Python**\n"
   "*Morelia viridis*\n\n"
-  "Bright green, coiled on branch.\n"
-  "Arboreal, nocturnal.\n"
-  "Perfect for dark lockscreen!"
+  "Bright green, coiled.\n"
+  "Arboreal, nocturnal."
  )
 
 t=os.getenv("DISCORD_TOKEN")
