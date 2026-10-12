@@ -35,18 +35,6 @@ async def wallpaper(ctx):
   fs.append(discord.File(b,n))
  await ctx.send("Here!",files=fs)
 
-@bot.command()
-async def identify(ctx):
- if not ctx.message.attachments:
-  await ctx.send("Attach snake pic!")
-  return
- await ctx.send(
-  "**Green Tree Python**\n"
-  "*Morelia viridis*\n\n"
-  "Bright green, coiled.\n"
-  "Arboreal, nocturnal."
- )
-
 t=os.getenv("DISCORD_TOKEN")
 if t:
  bot.run(t.strip())
