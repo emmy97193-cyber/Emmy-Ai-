@@ -8,7 +8,7 @@ def get_wallpapers():
     # Check root (where you uploaded)
     images += glob.glob("*.jpg") + glob.glob("*.jpeg") + glob.glob("*.png") + glob.glob("*.webp") + glob.glob("*.JPG") + glob.glob("*.JPEG")
     # Filter only your IMG uploads
-    images = [f for f in images if f.startswith("IMG-")]
+    
     # Check other folders too
     for folder in ["static", "static/wallpapers", "wallpapers"]:
         if os.path.exists(folder):
