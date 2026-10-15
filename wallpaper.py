@@ -1,17 +1,13 @@
-from PIL import Image
-def make_wallpapers(im):
- w,h=im.size
- # home square crop
- s=min(w,h)
- l=(w-s)//2
- t=(h-s)//2
- home=im.crop((l,t,l+s,t+s))
- home=home.resize((1080,1080))
- # lock with dark top for clock
- lock=Image.new("RGBA",(1080,1920),(5,20,10,255))
- im2=im.copy()
- im2.thumbnail((1080,1080))
- x=(1080-im2.width)//2
- y=400
- lock.alpha_composite(im2,(x,y))
- return home,lock
+def get_wallpapers():
+    images = []
+    # Get EVERY image from root
+    for ext in ["*.jpg","*.jpeg","*.png","*.webp","*.JPG","*.JPEG","*.PNG"]:
+        images += glob.glob(ext)
+    # Also check subfolders
+    for folder in ["static","static/wallpapers","wallpapers"]:
+        if os.path.exists(folder):
+            for ext in ["*.jpg","*.jpeg","*.png","*.webp","*.JPG","*.JPEG","*.PNG"]:
+                images += glob.glob(f"{folder}/{ext}")
+    # Remove duplicates and sort newest first
+    images = sorted(set(images), reverse=True)
+    return images
