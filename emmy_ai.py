@@ -1,43 +1,67 @@
-import openai
-import requests
-from datetime import datetime
+import os, glob
+from flask import Flask, send_from_directory
 
-# CONFIG - put your keys here
-OPENAI_KEY = "sk-..."
-IG_ACCESS_TOKEN = "YOUR_IG_LONG_LIVED_TOKEN"
-IG_USER_ID = "YOUR_IG_USER_ID"
-BUFFER_TOKEN = "YOUR_BUFFER_TOKEN"
+app = Flask(__name__)
 
-client = openai.OpenAI(api_key=OPENAI_KEY)
+def get_wallpapers():
+    images = []
+    # Check root (where you uploaded)
+    images += glob.glob("*.jpg") + glob.glob("*.jpeg") + glob.glob("*.png") + glob.glob("*.webp") + glob.glob("*.JPG") + glob.glob("*.JPEG")
+    # Filter only your IMG uploads
+    images = [f for f in images if f.startswith("IMG-")]
+    # Check other folders too
+    for folder in ["static", "static/wallpapers", "wallpapers"]:
+        if os.path.exists(folder):
+            for ext in ["jpg","jpeg","png","webp","JPG"]:
+                images += glob.glob(f"{folder}/*.{ext}")
+    return images
 
-EMMY_PROMPT = """
-You are emmy Ai ⭐️. Voice: calm, confident, mystical, Naija boss energy.
-Closed smile, no teeth. Never loud. Short sentences.
-Write Instagram caption: 2-3 lines max + 5 hashtags for this idea: {idea}
-Include 'emmy Ai ⭐️' vibe.
-"""
+@app.route('/')
+def home():
+    wallpapers = get_wallpapers()
+    # Build HTML grid
+    cards = ""
+    for img in wallpapers:
+        cards += f"""
+        <div style="background:#111;border-radius:15px;overflow:hidden;margin:10px;">
+            <img src="/file/{img}" style="width:100%;height:300px;object-fit:cover;">
+            <a href="/file/{img}" download style="display:block;background:#0f0;color:#000;text-align:center;padding:12px;margin:10px;border-radius:10px;font-weight:bold;text-decoration:none;">↓ Download</a>
+        </div>
+        """
+    if not cards:
+        cards = "<p style='color:white;text-align:center;'>No wallpapers found yet. Upload IMG files to GitHub root.</p>"
 
-def generate_caption(idea):
-    res = client.chat.completions.create(
-        model="gpt-4o",
-        messages=[{"role": "user", "content": EMMY_PROMPT.format(idea=idea)}]
-    )
-    return res.choices[0].message.content
+    return f"""
+    <html>
+    <head><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EMMY AI WALLPAPER</title>
+    </head>
+    <body style="background:black;margin:0;font-family:sans-serif;">
+        <div style="background:#0a5c26;padding:20px;text-align:center;color:white;">
+            <h1 style="margin:0;">EMMY AI 🐸 $WALLPAPER</h1>
+            <p>Meme Coin Community • AI Wallpaper Bot</p>
+            <span style="background:black;padding:5px 15px;border-radius:20px;font-size:13px;">BOT ONLINE ✅ emmyai0616#1150</span>
+        </div>
+        <div style="padding:15px;">
+            <h2 style="color:white;text-align:center;">🔥 Trending Wallpapers</h2>
+            <p style="color:gray;text-align:center;">Download • Set • Share</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                {cards}
+            </div>
+        </div>
+    </body>
+    </html>
+    """
 
-def queue_to_buffer(caption, image_url):
-    url = "https://api.bufferapp.com/1/updates/create.json"
-    data = {
-        "access_token": BUFFER_TOKEN,
-        "profile_ids[]": "YOUR_IG_PROFILE_ID",
-        "text": caption,
-        "media[photo]": image_url
-    }
-    r = requests.post(url, data=data)
-    print("Queued for approval:", r.json())
-    return r.json()
+@app.route('/file/<path:filename>')
+def serve_file(filename):
+    # Serve from root or subfolder
+    directory = os.path.dirname(filename) or "."
+    file = os.path.basename(filename)
+    if directory == ".":
+        return send_from_directory(".", file)
+    else:
+        return send_from_directory(directory, file)
 
-# EXAMPLE USE
 if __name__ == "__main__":
-    idea = "The forest eye is watching, AI is not coming, it's already here"
-    caption = generate_caption(idea)
-    print(caption)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
