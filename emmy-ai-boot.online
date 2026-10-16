@@ -1,0 +1,6 @@
+Starting Container
+[INFO] Listening at: http://0.0.0.0:8080 (1)
+[INFO] Using worker: sync
+[INFO] Booting worker with pid: 2
+[INFO] Control socket listening at /root/.gunicorn/gunicorn.ctl
+[INFO] Starting gunicorn 26.2.0
