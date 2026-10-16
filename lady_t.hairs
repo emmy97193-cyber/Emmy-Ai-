@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Lady T Intro Video</title>
+<style>
+body{margin:0;background:#fff0f5;display:flex;justify-content:center;align-items:center;min-height:100vh;font-family:Arial}
+.card{width:360px;background:white;border-radius:20px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,0.2);text-align:center}
+.card img{width:100%;animation:zoom 4s ease-in-out infinite alternate}
+@keyframes zoom{from{transform:scale(1)} to{transform:scale(1.05)}}
+.text{padding:20px}
+h1{color:#d63384;margin:0;font-size:22px}
+p{color:#555;font-size:14px}
+.btn{background:#d63384;color:white;padding:12px 20px;border-radius:30px;display:inline-block;margin-top:10px;text-decoration:none;font-weight:bold}
+</style>
+</head>
+<body>
+<div class="card">
+<img src="ladyt-talking.jpg" alt="Lady T Talking">
+<div class="text">
+<h1>LADY T HAIRS & BEAUTY EMPIRE</h1>
+<p>Welcome to Lady T Hairs and Beauty Empire, your home of luxury wigs, pink lips, lip gloss, body creams and more. Based in Sapele, we deliver nationwide. DM us now!</p>
+<a class="btn" href="https://wa.me/2348120287198">Chat Us Now - 08120287198</a>
+</div>
+</div>
+<script>
+// Auto voiceover text - paste into CapCut Text-to-Speech
+console.log("Voiceover ready for CapCut");
+</script>
+</body>
+</html>
