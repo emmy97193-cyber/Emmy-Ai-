@@ -1,0 +1,12 @@
+import subprocess
+from ollama import chat
+
+def ai_control_phone(prompt):
+    # Get AI decision
+    response = chat(model='llama3.2', messages=[{'role':'user','content':prompt}])
+    command = response['message']['content']
+    
+    # Execute ADB command
+    subprocess.run(['adb', 'shell', command])
+
+ai_control_phone("Open WhatsApp and send hello to Mom")
