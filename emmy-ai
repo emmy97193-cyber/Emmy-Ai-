@@ -1,8 +1,30 @@
-// Your Emmy-Ai character for your app
-const EmmyAiCharacter = {
-  name: "Emmy-Ai",
-  tagline: "We Are The Creator",
-  unite() {
-    return `I am ${this.name} - ${this.tagline}`;
-  }
-}
+<!-- EMMY AI - Cyborg Neural Link 98.7% - LIVE -->
+<div style="width:100%; max-width:480px; margin:0 auto; border-radius:24px; overflow:hidden; background:#000; border:2px solid #00e5ff; box-shadow: 0 0 25px rgba(0,229,255,0.3);">
+  <video 
+    autoplay 
+    loop 
+    muted 
+    playsinline
+    preload="auto"
+    style="width:100%; height:auto; display:block;"
+  >
+    <source src="https://files.catbox.moe/co0epb.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div style="text-align:center; color:#00e5ff; font-family:monospace; font-size:11px; letter-spacing:1px; padding:8px; background: #001a1f; border-top:1px solid #00e5ff55;">
+    NEURAL LINK: ACTIVE | 98.7% SYNC | SUBJECT: LOCKED | BIOMETRIC STATUS: STABLE
+  </div>
+</div>
+
+<!-- Keep your buttons under it - SAME as your live 00:36 build -->
+<a href="https://wa.me/2349115131319?text=Hi%20Emmy%20AI%20%E2%AD%90%20I%20saw%20your%20cyborg%20video" 
+   target="_blank"
+   style="display:block; text-align:center; background:#00e5ff; color:#000; padding:14px 20px; border-radius:999px; font-weight:800; text-decoration:none; margin:14px auto; max-width:320px;">
+   💬 Chat Emmy on WhatsApp
+</a>
+
+<a href="https://wa.me/2349115131319?text=Hello%20Lady%20T%20I%20want%20to%20buy%20hair" 
+   target="_blank"
+   style="display:block; text-align:center; background:#ff2d95; color:#fff; padding:14px 20px; border-radius:999px; font-weight:700; text-decoration:none; margin:0 auto 20px; max-width:320px;">
+   🛍️ Shop Lady T Hairs - 09115131319
+</a>
