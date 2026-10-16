@@ -1,0 +1,3 @@
+# BAD - AI could say anything
+cmd = ai_response
+subprocess.run(cmd, shell=True)
