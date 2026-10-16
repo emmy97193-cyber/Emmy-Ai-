@@ -1,0 +1,5 @@
+Authorize domain: eu.arnoo.com  ← NOT samsung.com
+client_id: smart_things_ai_dot
+redirect: c2c-us.smartthings.com/oauth/callback
+brand: AiDot ( logo from samsungiotcloud.com )
+state: viper_afc72490... = AiDot vendor
