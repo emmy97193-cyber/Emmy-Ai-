@@ -1,0 +1,37 @@
+import subprocess
+from ollama import chat
+import re
+
+# 1. Only allow these SAFE actions
+SAFE_ACTIONS = {
+    "open_whatsapp": lambda: subprocess.run(["adb", "shell", "am start -a android.intent.action.VIEW -d https://wa.me/"], check=True),
+    "send_whatsapp": lambda name, msg: subprocess.run(["adb", "shell", f"am start -a android.intent.action.SENDTO -d sms:{name} --es sms_body '{msg}'"], check=True)
+}
+
+def ai_control_phone_safe(prompt):
+    response = chat(model='llama3.2', messages=[
+        {'role':'system','content':'You are a planner. Reply ONLY in JSON like: {"action":"open_whatsapp"} or {"action":"send_whatsapp", "contact":"Mom", "message":"hello"}. No shell commands.'},
+        {'role':'user','content':prompt}
+    ])
+    content = response['message']['content']
+    
+    # 2. Parse JSON, never raw shell
+    import json
+    try:
+        decision = json.loads(re.search(r'\{.*\}', content, re.DOTALL).group())
+    except:
+        print("AI didn't return valid JSON, blocked:", content)
+        return
+
+    # 3. Validate against allowlist
+    action = decision.get("action")
+    if action not in SAFE_ACTIONS:
+        print(f"Blocked unsafe action: {action}")
+        return
+    
+    print(f"Executing safe action: {decision}")
+    # Now YOU control the actual adb command
+    if action == "open_whatsapp":
+        SAFE_ACTIONS[action]()
+
+ai_control_phone_safe("Open WhatsApp and send hello to Mom")
