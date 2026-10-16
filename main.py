@@ -3,50 +3,50 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return """
+    # REPLACE THIS WITH YOUR IMGUR LINK AFTER UPLOAD
+    HERO_IMAGE = "https://i.imgur.com/YOUR_NEW_IMAGE_LINK.jpg"
+    
+    return f"""
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Emmy-Ai- | Lady T Beauty Empire</title>
+<title>EMMY AI Technology - I am the creator</title>
 <style>
-body{margin:0;background:#0a0a1a;font-family:Arial;color:white;overflow-x:hidden}
-#splash{position:fixed;top:0;left:0;width:100%;height:100%;background:#0a0a1a;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:0.8s}
-#splash video{width:280px;border-radius:20px}
-#splash h2{color:#ff6bce;margin-top:15px;letter-spacing:2px;text-shadow:0 0 10px #ff6bce}
-.card{max-width:420px;margin:20px auto;background:white;color:#333;border-radius:20px;overflow:hidden;box-shadow:0 15px 40px rgba(0,0,0,.5)}
-.card img{width:100%} .text{padding:20px}
-.btn{display:block;padding:16px;border-radius:35px;text-decoration:none;font-weight:bold;margin:12px 0;text-align:center}
-.btn-wa{background:#25D366;color:white}
-.btn-call{background:#d63384;color:white}
-.badge{background:#d63384;color:white;padding:6px 12px;border-radius:20px;font-size:12px;display:inline-block}
+body{{margin:0;background:#060616;font-family:Arial;color:white;text-align:center}}
+.hero{{position:relative;width:100%;max-width:480px;margin:0 auto}}
+.hero img{{width:100%;border-radius:0 0 25px 25px;box-shadow:0 10px 40px #00f2ff66}}
+.overlay{{position:absolute;bottom:20px;left:0;right:0}}
+.btn{{display:inline-block;padding:14px 28px;border-radius:30px;text-decoration:none;font-weight:bold;margin:8px}}
+.btn-wa{{background:#25D366;color:white}} .btn-shop{{background:#ff2e93;color:white}}
+.info{{max-width:420px;margin:20px auto;background:white;color:#222;border-radius:20px;padding:18px;text-align:left}}
+.badge{{background:#d63384;color:white;padding:5px 10px;border-radius:15px;font-size:12px}}
 </style>
 </head>
 <body>
-
-<div id="splash">
-  <img src="https://i.imgur.com/Q2a4LwZ.gif" alt="Emmy Ai Avatar" style="width:250px">
-  <h2>EMMY AI technology ⭐</h2>
-  <p id="creator-text" style="font-size:18px;margin-top:5px;opacity:0;transition:1s">I am the creator</p>
+<div class="hero">
+<img src="{HERO_IMAGE}" alt="EMMY AI Technology I am the creator">
 </div>
 
-<div class="card">
-<img src="https://i.imgur.com/8Km9tLL.jpg" alt="Lady T">
-<div class="text">
-<span class="badge">26" SDD BLONDE - AVAILABLE</span>
-<h1 style="color:#d63384;font-size:20px">LADY T HAIRS & BEAUTY EMPIRE</h1>
-<p>Welcome to Emmy-Ai- project - Luxury hairs & beauty in Sapele!</p>
-<a class="btn btn-wa" href="https://wa.me/2348120287198?text=Hello%20Lady%20T%2C%20I%20saw%20your%20Emmy-Ai%20site%20and%20want%20to%20order">💬 Order on WhatsApp</a>
-<a class="btn btn-call" href="tel:+2348120287198">📞 08120287198</a>
-<p style="font-size:11px;color:#888">emmy-ai-production-bc46.up.railway.app | Built with Emmy-Ai- concept</p>
-</div>
+<div style="padding:15px">
+<h2 style="color:#00f2ff">Welcome to Emmy-Ai- Empire</h2>
+<p>Your AI-powered tech & beauty platform</p>
+<a class="btn btn-wa" href="https://wa.me/2348120287198?text=Hello%20Emmy%20I%20saw%20your%20new%20homepage">💬 Chat Emmy on WhatsApp</a>
+<a class="btn btn-shop" href="https://wa.me/2348120287198?text=I%20want%20to%20shop%20Lady%20T%20products">🛍️ Shop Lady T Hairs</a>
+
+<div class="info">
+<span class="badge">ACTIVE PROJECT</span>
+<h3 style="margin:10px 0 5px;color:#d63384">Emmy-Ai- - Online</h3>
+<p style="font-size:14px;line-height:1.5">
+✔️ Production: emmy-ai-production-bc46.up.railway.app<br>
+✔️ Gunicorn 26.2.0 - Listening 0.0.0.0:8080<br>
+✔️ Deployment successful - 2026-10-16 18:09<br>
+✔️ Concept: I-Ai = We Are The Creator
+</p>
 </div>
 
-<script>
-// Splash logic - shows your avatar intro
-setTimeout(()=>{document.getElementById('creator-text').style.opacity='1'},800);
-setTimeout(()=>{document.getElementById('splash').style.transform='translateY(-100%)'},3000);
-</script>
+<p style="color:#888;font-size:11px;margin-top:20px">Built with Meta AI • Powered by EMMY AI technology ⭐ • Abuja, NG</p>
+</div>
 </body>
 </html>
 """
