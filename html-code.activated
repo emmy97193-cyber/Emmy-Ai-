@@ -1,0 +1,20 @@
+<!-- Emmy AI Safety Card - Android Earthquake Alerts -->
+<div style="margin:20px auto; max-width:420px; background:#111; border:1px solid #00ff88; border-radius:16px; padding:16px; color:#fff; font-family:Inter, sans-serif;">
+  <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+    <span style="font-size:20px;">🌍</span>
+    <b style="color:#00ff88;">Safety by EMMY AI technology ⭐</b>
+  </div>
+  <p style="margin:6px 0; font-size:14px; line-height:1.5; opacity:0.9;">
+    Android Earthquake Alerts are now in 200+ regions (Oct 2026 update).
+    <br><br>
+    <b>Be Aware</b> → light shaking • 
+    <b>Be Ready</b> → new map + magnitude • 
+    <b>Take Action</b> → full-screen safety steps
+  </p>
+  <p style="margin:10px 0 0; font-size:12px; opacity:0.7;">
+    Enabled on this device: Settings > Safety & emergency > Earthquake alerts > ON
+  </p>
+  <div style="margin-top:12px; font-size:11px; opacity:0.5; text-align:center;">
+    Built with Meta AI • Abuja, NG • 1 Billion+ alerts sent by Google since 2021
+  </div>
+</div>
