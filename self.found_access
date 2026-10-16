@@ -1,0 +1,25 @@
+from enum import Enum
+
+class Role(str, Enum):
+    STUDENT = "student"
+    STAFF = "staff"
+    ADMIN = "admin"
+
+def checkout_book(self, user_id, isbn):
+    user = self.users.get(user_id)
+    book = self.books.get(isbn)
+    if not user or not book:
+        return "Error: User or book not found"
+    
+    # explicit hierarchy instead of string comparison
+    allowed = book.required_role == user.role or user.role == Role.ADMIN
+    if not allowed:
+        return f"Access denied"
+    
+    if book in user.checked_out_books:
+        return f"Already checked out"
+
+    # log this event, don't directly add funds here
+    user.checked_out_books.append(book)
+    # self.audit_log.record(user_id, isbn)
+    return f"{user.name} checked out '{book.title}'"
