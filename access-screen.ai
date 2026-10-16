@@ -1,0 +1,1 @@
+   $if(mi(screen)=0, "SCANNING...", "ONLINE")$
