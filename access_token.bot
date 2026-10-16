@@ -1,0 +1,24 @@
+class AccountBook:
+    def __init__(self, name):
+        self.name = name
+        self.entries = []
+        self.authorized_users = set()
+    
+    def authorize_user(self, username):
+        self.authorized_users.add(username)
+    
+    def add_entry(self, username, amount, description):
+        if username not in self.authorized_users:
+            raise PermissionError(f"{username} not authorized for {self.name}")
+        
+        entry = {"user": username, "amount": amount, "desc": description}
+        self.entries.append(entry)
+        return f"Entry added: {amount} by {username}"
+    
+    def get_balance(self):
+        return sum(e["amount"] for e in self.entries)
+
+# Example: Only authorized users can move money through this ledger
+ledger = AccountBook("Project Funds")
+ledger.authorize_user("finance_manager")
+print(ledger.add_entry("finance_manager", -1000, "Equipment purchase"))
