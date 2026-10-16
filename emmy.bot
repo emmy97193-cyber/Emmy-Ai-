@@ -1,0 +1,11 @@
+class EmmyAi:
+    def __init__(self):
+        self.I = "Emmy"
+        self.AI = "Ai"
+        self.WE = f"{self.I}-{self.AI}"
+        self.purpose = "We Are The Creator"
+
+    def unite(self):
+        return f"I am {self.WE} {self.purpose} and we unite as one combination"
+
+print(EmmyAi().unite())
