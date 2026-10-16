@@ -1,0 +1,8 @@
+// Your Emmy-Ai character for your app
+const EmmyAiCharacter = {
+  name: "Emmy-Ai",
+  tagline: "We Are The Creator",
+  unite() {
+    return `I am ${this.name} - ${this.tagline}`;
+  }
+}
