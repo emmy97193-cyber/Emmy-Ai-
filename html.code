@@ -1,0 +1,26 @@
+<button id="starBtn">⭐ Unlock Star</button>
+<div id="star" class="locked">⭐</div>
+
+<style>
+  #star { font-size: 80px; filter: grayscale(1); opacity: 0.3; transition: 0.5s; }
+  #star.unlocked { filter: grayscale(0); opacity: 1; transform: scale(1.3) rotate(15deg); }
+</style>
+
+<script>
+  const star = document.getElementById('star');
+  const btn = document.getElementById('starBtn');
+
+  function unlockStar() {
+    star.classList.add('unlocked');
+    localStorage.setItem('star_unlocked', 'true');
+    btn.textContent = 'Unlocked!';
+    console.log('⭐ Star unlocked!');
+  }
+
+  // Check if already unlocked before
+  if (localStorage.getItem('star_unlocked') === 'true') {
+    unlockStar();
+  }
+
+  btn.addEventListener('click', unlockStar);
+</script>
