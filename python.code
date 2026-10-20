@@ -1,0 +1,12 @@
+def unlock_star(user_progress):
+    if user_progress['points'] >= 100:
+        user_progress['star_unlocked'] = True
+        print("⭐ Congratulations! Star unlocked!")
+        return True
+    else:
+        print(f"Need {100 - user_progress['points']} more points to unlock star")
+        return False
+
+# Usage
+user = {'points': 120, 'star_unlocked': False}
+unlock_star(user)
