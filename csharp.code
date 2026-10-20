@@ -1,0 +1,21 @@
+public class StarManager : MonoBehaviour
+{
+    public GameObject starIcon;
+    public bool isStarUnlocked = false;
+
+    public void UnlockStar()
+    {
+        if (isStarUnlocked) return;
+        
+        isStarUnlocked = true;
+        starIcon.SetActive(true);
+        
+        // Save it
+        PlayerPrefs.SetInt("StarUnlocked", 1);
+        
+        // Add some juice
+        starIcon.transform.DOScale(1.5f, 0.3f).SetLoops(2, LoopType.YoYo);
+        
+        Debug.Log("⭐ STAR UNLOCKED!");
+    }
+}
