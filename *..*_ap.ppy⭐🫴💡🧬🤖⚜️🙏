@@ -1,0 +1,42 @@
+from flask import Flask
+import os
+
+app = Flask(__name__)
+
+# Your image from GitHub raw - ALWAYS works
+IMAGE_URL = "https://raw.githubusercontent.com/emmy9719/Emmy-Ai-/main/IMG-20261020-WA9640.jpg"
+
+@app.route('/')
+def home():
+    return f"""
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMMY AI | STAR ACTIVATED</title>
+<style>
+ body{{margin:0;background:#050612;color:white;font-family:Arial;text-align:center;padding:20px}}
+ .logo{{font-size:3.2rem;font-weight:900;background:linear-gradient(90deg,#f9d76e,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent}}
+ img{{width:92%;max-width:420px;border-radius:22px;border:3px solid #a855f7;box-shadow:0 0 40px #a855f7;margin:20px 0}}
+ .tag{{letter-spacing:3px;color:#f9d76e;font-weight:bold;margin:15px}}
+ .btn{{display:block;margin:12px auto;padding:14px;border-radius:50px;text-decoration:none;font-weight:800;width:90%;max-width:320px}}
+ .gold{{background:linear-gradient(90deg,#ffcc33,#ffef9a);color:#140b2a}}
+ .purple{{background:linear-gradient(90deg,#7c3aed,#a855f7);color:white}}
+</style>
+</head>
+<body>
+ <div class="logo">EMMY AI</div>
+ <div style="font-size:3.5rem">⭐</div>
+ <img src="{IMAGE_URL}" alt="EMMY AI CEO">
+ <div class="tag">INTELLIGENCE • INNOVATION • IMPACT</div>
+ <a href="{IMAGE_URL}" download class="btn gold">📥 Download Home Wallpaper</a>
+ <a href="{IMAGE_URL}" download class="btn purple">📱 Download Lock Screen</a>
+ <p style="opacity:0.6;margin-top:25px">CEO MODE: ACTIVE | GLASSES: FUTURE VISION | STAR: ⭐ ACTIVATED</p>
+ <p style="opacity:0.4;font-size:0.8rem">emmy-ai-production-bc46.up.railway.app</p>
+</body>
+</html>
+"""
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 8080)))
