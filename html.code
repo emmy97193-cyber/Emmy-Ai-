@@ -1,38 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EMMY AI ⭐ CEO</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMMY AI ⭐ Innovation Without Limits</title>
 <style>
-body{background:#050505;color:#fff;font-family:Arial;text-align:center;margin:0;padding:0}
-.hero{padding:80px 20px;background:linear-gradient(180deg,#111,#000)}
-.gold{color:#FFD700;font-size:48px;font-weight:900;letter-spacing:2px}
-.btn{display:inline-block;margin:15px;padding:14px 28px;background:#FFD700;color:#000;border-radius:30px;font-weight:900;text-decoration:none}
-.card{background:#111;border:1px solid #222;border-radius:16px;padding:20px;margin:15px}
-.float{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;padding:14px 20px;border-radius:50px;text-decoration:none;font-weight:900;box-shadow:0 0 20px #25D366}
+body{margin:0;background:#000;color:#fff;font-family:system-ui;text-align:center}
+.hero{padding:70px 20px;background:radial-gradient(circle at top,#1a1a1a,#000)}
+.gold{color:#FFD700;font-size:42px;font-weight:900}
+.sub{color:#aaa;margin-top:10px;line-height:1.6}
+.badge{display:inline-block;border:1px solid #FFD700;color:#FFD700;padding:6px 14px;border-radius:20px;font-size:12px;margin-top:15px}
+.card{background:#0f0f0f;border:1px solid #222;border-radius:18px;padding:18px;margin:14px;text-align:left}
+.grid{max-width:500px;margin:auto}
+.btn{display:inline-block;margin:8px;padding:14px 26px;border-radius:30px;font-weight:900;text-decoration:none}
+.btn-gold{background:#FFD700;color:#000}
+.btn-green{background:#25D366;color:#fff}
+.float{position:fixed;bottom:18px;right:18px;background:#25D366;color:#fff;padding:14px 22px;border-radius:50px;text-decoration:none;font-weight:900;box-shadow:0 0 25px #25D366;z-index:99}
+h2{color:#FFD700;margin-top:40px}
 </style>
 </head>
 <body>
 <div class="hero">
-<div style="font-size:80px">⭐</div>
+<div style="font-size:70px">⭐ 🕶️ 🤖</div>
 <h1 class="gold">EMMY AI ⭐</h1>
-<p>CEO EMMY AI | Built from Sapele<br>📍 Sapele, Delta State 🇳🇬<br>CEO MODE: ACTIVE</p>
-<a class="btn" href="https://emmy-ai-production-bc46.up.railway.app/">🌐 LIVE SITE</a>
+<p class="sub">Your Accessibility & AI Technology Assistant<br>🤖🕶️ Innovation Without Limits</p>
+<div class="badge">🌍 My eyes are on the universe. My vision is worldwide.</div>
+<br><br>
+<a class="btn btn-gold" href="https://wa.me/2349115131319?text=Hi%20EMMY%20AI%20⭐%20I%20need%20AI%20Glasses">💬 WhatsApp CEO</a>
+<a class="btn btn-green" href="https://www.tiktok.com/@emmyai0616" target="_blank">🔗 @emmyai0616</a>
 </div>
 
-<h2 style="margin-top:40px;color:#FFD700">SERVICES</h2>
-<div class="card">🚀 AI Websites & Landing Pages — Fast, Modern, CEO Level</div>
-<div class="card">🤖 Business Automation — Save Time, Make More</div>
-<div class="card">🎨 Branding & Graphics — Logo, Flyers, Social</div>
+<div class="grid">
+<h2>🧬 ABOUT EMMY AI</h2>
+<div class="card">My name is Emmy AI — your accessibility and technology bot. 🤖💠<br><br>I create AI glasses 🕶️ and develop innovative technology designed to make life smarter, easier, and more accessible for everyone.<br><br>From building technology from scratch to bringing systems to life, my mission is to connect people with the power of AI, accessibility, and futuristic innovation.</div>
 
-<h2 style="margin-top:40px;color:#FFD700">ABOUT</h2>
-<div class="card">Built from Sapele, Delta State. EMMY AI builds digital empires for CEOs. No excuses, just results.</div>
+<h2>🦾 SERVICES & INNOVATION</h2>
+<div class="card">🕶️ <b>AI Glasses Creation</b><br>Smart glasses for vision assistance & futuristic experience</div>
+<div class="card">🤖 <b>Artificial Intelligence Solutions</b><br>Custom AI bots, automation & smart assistants</div>
+<div class="card">♿ <b>Accessibility Technology</b><br>Tech that makes life easier for everyone</div>
+<div class="card">🧬 <b>Smart Technology Development</b><br>Building systems from scratch to life</div>
+<div class="card">💡 <b>Creative Digital Innovation</b><br>Future-focused ideas & digital products</div>
+<div class="card">🔧 <b>Technology Setup and Activation</b><br>Setup, install & activate your tech</div>
 
-<h2 style="margin-top:40px;color:#FFD700">CONTACT</h2>
-<div class="card">📍 Sapele, Delta State<br>🌐 https://emmy-ai-production-bc46.up.railway.app/</div>
+<h2>📲 CONTACT EMMY AI</h2>
+<div class="card">🔘 WhatsApp: +234 911 513 1319<br>🔗 Social: @emmyai0616<br>📍 Sapele, Delta State 🇳🇬<br>🌐 emmy-ai-production-bc46.up.railway.app</div>
 
-<br><br><br>
-<a class="float" href="https://wa.me/234000000000?text=Hi%20CEO%20EMMY%20AI%20⭐">💬 Chat with CEO</a>
+<div style="padding:30px;color:#555;font-size:12px">⭐ 🐾 🕶️ 🧬 🤖 💠 💡 ✅ 🔘 🫴 🌞 🔥<br><br>EMMY AI ⭐️ — Innovation Without Limits.<br>CEO MODE: ACTIVE<br><br></div>
+</div>
+
+<a class="float" href="https://wa.me/2349115131319?text=Hi%20EMMY%20AI%20⭐">💬 Chat</a>
 </body>
 </html>
