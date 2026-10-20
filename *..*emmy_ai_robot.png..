@@ -1,0 +1,47 @@
+import android.app.WallpaperManager
+import android.content.Intent
+import android.graphics.BitmapFactory
+import android.net.Uri
+import android.provider.Settings
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+
+class MainActivity : AppCompatActivity() {
+
+    private val choosePhoto =
+        registerForActivityResult(
+            ActivityResultContracts.GetContent()
+        ) { uri: Uri? ->
+            uri?.let { selectedPhoto ->
+                contentResolver.openInputStream(selectedPhoto)?.use {
+                    val bitmap = BitmapFactory.decodeStream(it)
+
+                    val wallpaperManager =
+                        WallpaperManager.getInstance(this)
+
+                    wallpaperManager.setBitmap(
+                        bitmap,
+                        null,
+                        true,
+                        WallpaperManager.FLAG_SYSTEM or
+                            WallpaperManager.FLAG_LOCK
+                    )
+                }
+            }
+        }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // Replace this with your app's button click handler.
+        // Opens the photo picker.
+        choosePhoto.launch("image/*")
+    }
+
+    private fun openAccessibilitySettings() {
+        startActivity(
+            Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
+        )
+    }
+}
