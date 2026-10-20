@@ -1,0 +1,4 @@
+[INFO] Starting gunicorn 26.2.0
+[INFO] Listening at: http://0.0.0.0:8080
+[INFO] Booting worker with pid: 2
+Starting Container
