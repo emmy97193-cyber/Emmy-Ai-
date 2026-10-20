@@ -1,0 +1,33 @@
+import Sidebar from "@/components/Sidebar";
+
+const adminStats = [
+  { label: "Total Revenue", value: "$12,460" },
+  { label: "Pending Orders", value: "44" },
+  { label: "Active Users", value: "1,544" },
+];
+
+export default function AdminDashboardPage() {
+  return (
+    <div className="layout">
+      <Sidebar />
+
+      <main className="content">
+        <div className="topbar">
+          <div>
+            <div className="muted">Admin</div>
+            <h1 style={{ margin: "6px 0 0" }}>Control Panel</h1>
+          </div>
+        </div>
+
+        <div className="grid grid-3">
+          {adminStats.map((item) => (
+            <div className="stat-card" key={item.label}>
+              <div className="muted">{item.label}</div>
+              <div style={{ fontSize: 32, fontWeight: 800, marginTop: 8 }}>{item.value}</div>
+            </div>
+          ))}
+        </div>
+      </main>
+    </div>
+  );
+}
