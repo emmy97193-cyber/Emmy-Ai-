@@ -1,0 +1,8 @@
+# 1. Go inside your project
+cd emmy-ai-boost
+
+# 2. Install
+npm install
+
+# 3. Test locally (should open browser)
+npm run dev
