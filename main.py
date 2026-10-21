@@ -1,6 +1,4 @@
-from app import app
-
-if __name__ == '__main__':
-    import os
-    port = int(os.environ.get('PORT', 8080))
-    app.run(host='0.0.0.0', port=port, debug=False)
+@app.get("/")
+def root():
+    return {"status": "Emmy-AI is live"}
+    gunicorn main:app --bind 0.0.0.0:$PORT
