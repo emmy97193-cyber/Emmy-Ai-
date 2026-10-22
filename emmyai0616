@@ -1,0 +1,43 @@
+#!/data/data/com.termux/files/usr/bin/bash
+set -euo pipefail
+
+# Expect tokens from env - safest way
+: "${DISCORD_BOT_TOKEN:? Run: export DISCORD_BOT_TOKEN='xxx' first}"
+: "${CHANNEL_ID:? Run: export CHANNEL_ID='xxx' first}"
+
+INTERVAL_MIN=${1:-60}
+INTERVAL_SEC=$((INTERVAL_MIN * 60))
+
+command -v termux-wake-lock >/dev/null && termux-wake-lock
+
+cleanup() {
+  echo -e "\n🛑 Stopping Emmy AI..."
+  command -v termux-wake-unlock >/dev/null && termux-wake-unlock
+  exit 0
+}
+trap cleanup INT TERM
+
+echo "🚀 Emmy AI - online loop every ${INTERVAL_MIN}m | @emmylux 🌹"
+
+while true; do
+  MSG="🌟 EMMY AI is online! Rose Garden LIVE 🌹 superuser.app/@emmylux [$(date +%H:%M)]"
+
+  RESPONSE=$(curl -sS -w "\n%{http_code}" -X POST \
+    "https://discord.com/api/v10/channels/${CHANNEL_ID}/messages" \
+    -H "Authorization: Bot ${DISCORD_BOT_TOKEN}" \
+    -H "Content-Type: application/json" \
+    -d "{\"content\":\"$MSG\"}")
+
+  CODE=$(echo "$RESPONSE" | tail -n1)
+  BODY=$(echo "$RESPONSE" | sed '$d')
+
+  if [ "$CODE" = "200" ] || [ "$CODE" = "201" ]; then
+    echo "[$(date +%H:%M)] ✅ Sent"
+  else
+    echo "[$(date +%H:%M)] ❌ $CODE"
+    echo "$BODY" | jq . 2>/dev/null || echo "$BODY"
+    [ "$CODE" = "401" ] || [ "$CODE" = "403" ] && break
+  fi
+
+  sleep "$INTERVAL_SEC"
+done
