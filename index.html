@@ -6,50 +6,51 @@
 <meta name="theme-color" content="#000000">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="STAR">
-<title>STAR // EMMY AI - LAREDO TX</title>
+<title>STAR V4 // SIRI MODE</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#000;color:#00ff88;font-family:monospace;padding:12px;padding-bottom:80px}
 .top{display:flex;justify-content:space-between;align-items:center;border:1px solid #00ff88;padding:10px;border-radius:10px}
 .top b{font-size:18px;letter-spacing:2px}.live{color:#00ff00}
 .eyes{display:flex;justify-content:center;gap:20px;margin:18px 0}
 .eye{width:110px;height:110px;background:#001a0f;border:3px solid #00ff88;border-radius:50%;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 0 25px #00ff88}
-.pupil{width:48px;height:48px;background:#00ff88;border-radius:50%;box-shadow:0 0 20px #00ff88;transition:.1s}
+.pupil{width:48px;height:48px;background:#00ff88;border-radius:50%;box-shadow:0 0 20px #00ff88}
 .card{border:1px solid #00ff88;border-radius:12px;padding:12px;margin:12px 0;background:#02120a}
-.card h3{margin:0 0 10px;color:#fff;letter-spacing:1px}
+.card h3{margin:0 0 10px;color:#fff}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .stat{border:1px solid #00ff8855;padding:10px;border-radius:8px;text-align:center}
 .stat b{font-size:20px;display:block;color:#fff}
 button{width:100%;padding:13px;margin:6px 0;background:#00ff88;color:#000;border:none;border-radius:10px;font-weight:900;font-size:15px}
 button.out{background:transparent;color:#00ff88;border:1px solid #00ff88}
 button.app{background:#0a2a1a;color:#fff;border:1px solid #00ff88;font-size:14px;padding:16px 5px}
+button.wake{background:#ff00aa;color:#fff}
 input{width:100%;padding:13px;border-radius:10px;border:1px solid #00ff88;background:#000;color:#fff;font-size:16px}
 #chatBox{max-height:220px;overflow-y:auto;margin-bottom:10px}
 .msg{padding:8px 10px;border-radius:8px;margin:6px 0;background:#022a18}
 .msg.me{background:#0a3a2a;text-align:right}
-a{color:#00ff88;text-decoration:none}
 .small{font-size:12px;opacity:.8}
 .apps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+#wakeStatus{text-align:center;padding:8px;border-radius:8px;margin:10px 0;background:#33001f;border:1px solid #ff00aa}
 </style>
 </head>
 <body>
-<div class="top"><div><b>STAR // SYSTEM ONLINE</b><div class="small">EMMY AI - LAREDO TX - V3 APP MODE</div></div><div class="live">● LIVE</div></div>
-
+<div class="top"><div><b>STAR V4 // SIRI MODE</b><div class="small">EMMY AI - LAREDO TX</div></div><div class="live">● LIVE</div></div>
 <div class="eyes"><div class="eye"><div class="pupil" id="p1"></div></div><div class="eye"><div class="pupil" id="p2"></div></div></div>
-<center><button onclick="speakStatus()">🎤 SAY: STAR, STATUS</button></center>
+<div id="wakeStatus">🎤 WAKE MODE: OFF - Tap below to activate</div>
+<center><button class="wake" onclick="toggleWake()">🎤 WAKE MODE ON - SAY "HEY STAR"</button></center>
+<center><button onclick="speakStatus()">🔊 SAY: STAR, STATUS</button></center>
 
 <div class="card"><h3>📊 DASHBOARD</h3><div class="grid">
-<div class="stat"><span>CPU CORES</span><b id="cpu">-</b></div>
+<div class="stat"><span>CPU</span><b id="cpu">-</b></div>
 <div class="stat"><span>RAM</span><b id="ram">-</b></div>
 <div class="stat"><span>BATTERY</span><b id="bat">-</b></div>
 <div class="stat"><span>SCREEN</span><b id="scr">-</b></div>
 </div><div class="small" id="time" style="text-align:center;margin-top:8px"></div></div>
 
-<div class="card"><h3>🌦️ LAREDO, TX WEATHER - LIVE</h3><div id="weather">Loading weather...</div><button class="out" onclick="getWeather()">🔄 Refresh Weather</button></div>
+<div class="card"><h3>🌦️ LAREDO WEATHER</h3><div id="weather">Loading...</div><button class="out" onclick="getWeather()">🔄 Refresh</button></div>
 
-<div class="card"><h3>💬 CHAT WITH STAR</h3><div id="chatBox"><div class="msg">Hello Boss Emmy! I am STAR V3. I can now open your apps and quick-reply for you. Try: open whatsapp, open tiktok</div></div><input id="chatInput" placeholder="Type to STAR... e.g open whatsapp" onkeydown="if(event.key==='Enter')sendChat()"><button onclick="sendChat()">SEND TO STAR ➤</button><button class="out" onclick="voiceChat()">🎤 Speak to STAR</button></div>
+<div class="card"><h3>💬 CHAT WITH STAR</h3><div id="chatBox"><div class="msg">Hello Boss Emmy! I am STAR V4 SIRI MODE. Turn on Wake Mode and just say HEY STAR.</div></div><input id="chatInput" placeholder="Type or Speak..." onkeydown="if(event.key==='Enter')sendChat()"><button onclick="sendChat()">SEND TO STAR ➤</button><button class="out" onclick="voiceChat()">🎤 Speak Once</button></div>
 
-<div class="card"><h3>📱 ALL APPS - TAP TO OPEN</h3><div class="apps">
+<div class="card"><h3>📱 ALL APPS</h3><div class="apps">
 <button class="app" onclick="openApp('whatsapp')">💬<br>WhatsApp</button>
 <button class="app" onclick="openApp('facebook')">📘<br>Facebook</button>
 <button class="app" onclick="openApp('tiktok')">🎵<br>TikTok</button>
@@ -61,69 +62,63 @@ a{color:#00ff88;text-decoration:none}
 <button class="app" onclick="openApp('phone')">📞<br>Phone</button>
 </div></div>
 
-<div class="card"><h3>💬 QUICK REPLIES - TAP TO SEND</h3>
-<p class="small">Tap one, STAR opens the app with your message ready. You just tap Send.</p>
-<button onclick="quickReply('whatsapp','Hey Boss is busy right now, will reply soon 🔥 - STAR')">WhatsApp: I'm busy, reply soon</button>
+<div class="card"><h3>💬 QUICK REPLIES</h3>
+<button onclick="quickReply('whatsapp','Hey Boss is busy right now, will reply soon 🔥 - STAR')">WhatsApp: I'm busy</button>
 <button onclick="quickReply('whatsapp','On my way Boss! Give me 10 mins 🙏')">WhatsApp: On my way</button>
 <button onclick="quickReply('facebook','Hey! Saw your message, will reply soon Boss 💪')">Facebook: Saw your message</button>
-<button class="out" onclick="quickReply('whatsapp','Hello Boss! This is EMMY AI STAR ✨ How are you?')">WhatsApp: Custom Hello</button>
 </div>
 
-<div class="card"><h3>🎵 MUSIC & YOUTUBE</h3>
+<div class="card"><h3>🎵 MUSIC</h3>
 <button onclick="window.open('https://www.youtube.com/results?search_query=afrobeats+2026','_blank')">🔥 Afrobeats Hits</button>
-<button onclick="window.open('https://www.youtube.com/results?search_query=amapiano+mix','_blank')">🎹 Amapiano Mix</button>
-<button onclick="window.open('https://www.youtube.com/results?search_query=gospel+music+nigeria','_blank')">🙏 Gospel Nigeria</button>
-<button onclick="window.open('https://www.youtube.com/results?search_query=chris+brown+2026','_blank')">🎤 Chris Brown</button>
-<button class="out" onclick="window.open('https://music.youtube.com','_blank')">▶ Open YouTube Music</button></div>
+<button onclick="window.open('https://www.youtube.com/results?search_query=amapiano+mix','_blank')">🎹 Amapiano</button>
+<button onclick="window.open('https://www.youtube.com/results?search_query=gospel+music+nigeria','_blank')">🙏 Gospel</button>
+</div>
 
-<div class="card"><h3>🦾 JARVIS CONTROL CENTER</h3>
-<button onclick="window.location.href='tel:'">📞 Make a Call</button>
-<button onclick="openApp('whatsapp')">💬 Open WhatsApp</button>
-<button onclick="window.open('https://maps.google.com/?q=Laredo+TX','_blank')">📍 Open Laredo Maps</button>
-<button onclick="if(navigator.vibrate)navigator.vibrate(300);speak('Vibrating Boss')">📳 Vibrate Phone</button>
-<button onclick="toggleFlash()">🔦 Flashlight On/Off</button>
-<button class="out" onclick="window.open('https://github.com/emmy97193-cyber/Emmy-Ai-','_blank')">⚙️ My GitHub Repo</button></div>
+<div class="card"><h3>🦾 JARVIS CONTROL</h3>
+<button onclick="window.location.href='tel:'">📞 Call</button>
+<button onclick="if(navigator.vibrate)navigator.vibrate(300);speak('Vibrating Boss')">📳 Vibrate</button>
+<button onclick="toggleFlash()">🔦 Flashlight</button>
+</div>
 
 <script>
 let pupils=[document.getElementById('p1'),document.getElementById('p2')];
-document.addEventListener('mousemove',e=>{moveEyes(e.clientX,e.clientY)});
-document.addEventListener('touchmove',e=>{moveEyes(e.touches[0].clientX,e.touches[0].clientY)});
-function moveEyes(x,y){let dx=(x/window.innerWidth-0.5)*30, dy=(y/window.innerHeight-0.5)*30; pupils.forEach(p=>p.style.transform=`translate(${dx}px,${dy}px)`)}
-function speak(t){let u=new SpeechSynthesisUtterance(t);u.rate=1;speechSynthesis.speak(u)}
-function speakStatus(){let b=document.getElementById('bat').innerText; speak(`Star V3 online Boss. Battery is ${b}. All apps ready. System green in Laredo Texas.`)}
+document.addEventListener('mousemove',e=>{let dx=(e.clientX/window.innerWidth-0.5)*30, dy=(e.clientY/window.innerHeight-0.5)*30; pupils.forEach(p=>p.style.transform=`translate(${dx}px,${dy}px)`)});
+function speak(t){speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);speechSynthesis.speak(u)}
+function speakStatus(){speak(`Star V4 online Boss. Battery is ${document.getElementById('bat').innerText}. Wake mode ready.`)}
 document.getElementById('cpu').innerText=navigator.hardwareConcurrency||8;
 document.getElementById('ram').innerText=(navigator.deviceMemory||4)+' GB';
 document.getElementById('scr').innerText=screen.width+'x'+screen.height;
 setInterval(()=>{document.getElementById('time').innerText=new Date().toLocaleString()},1000);
 if(navigator.getBattery)navigator.getBattery().then(b=>{function u(){document.getElementById('bat').innerText=Math.round(b.level*100)+'%'}u();b.onlevelchange=u});
-async function getWeather(){try{let r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=27.5306&longitude=-99.4808&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&temperature_unit=fahrenheit');let d=await r.json();let c=d.current;document.getElementById('weather').innerHTML=`<b style="font-size:28px;color:#fff">${Math.round(c.temperature_2m)}°F</b> Feels ${Math.round(c.apparent_temperature)}°F<br>💧 Humidity: ${c.relative_humidity_2m}% | 💨 Wind: ${c.wind_speed_10m} mph<br><span class="small">Laredo, TX - Live</span>`; }catch(e){document.getElementById('weather').innerText='Weather offline - check internet'}}getWeather();
-function openApp(app){
-  let urls={whatsapp:'https://wa.me/',facebook:'https://www.facebook.com/',tiktok:'https://www.tiktok.com/',instagram:'https://www.instagram.com/',youtube:'https://www.youtube.com/',gmail:'https://mail.google.com/',maps:'https://maps.google.com/?q=Laredo+TX',camera:'',phone:'tel:'};
-  speak('Opening '+app+' Boss');
-  if(app==='camera'){alert('Camera opens from your phone app - tap Camera icon on your phone');return}
-  if(app==='phone'){window.location.href='tel:';return}
-  window.open(urls[app],'_blank');
+async function getWeather(){try{let r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=27.5306&longitude=-99.4808&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&temperature_unit=fahrenheit');let d=await r.json();let c=d.current;document.getElementById('weather').innerHTML=`<b style="font-size:28px;color:#fff">${Math.round(c.temperature_2m)}°F</b> Feels ${Math.round(c.apparent_temperature)}°F<br>💧 ${c.relative_humidity_2m}% | 💨 ${c.wind_speed_10m} mph`}catch(e){document.getElementById('weather').innerText='Offline'}}getWeather();
+function openApp(app){let urls={whatsapp:'https://wa.me/',facebook:'https://www.facebook.com/',tiktok:'https://www.tiktok.com/',instagram:'https://www.instagram.com/',youtube:'https://www.youtube.com/',gmail:'https://mail.google.com/',maps:'https://maps.google.com/?q=Laredo+TX',phone:'tel:'};speak('Opening '+app+' Boss');if(app==='camera'){alert('Open Camera from phone');return}if(app==='phone'){window.location.href='tel:';return}window.open(urls[app],'_blank')}
+function quickReply(app,text){if(app==='whatsapp')window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');else window.open('https://www.facebook.com/messages/','_blank');speak('Quick reply ready Boss')}
+function sendChat(){let inp=document.getElementById('chatInput');let txt=inp.value.trim();if(!txt)return;let box=document.getElementById('chatBox');box.innerHTML+=`<div class="msg me">${txt}</div>`;let low=txt.toLowerCase();let reply="Got it Boss.";if(low.includes('hello')||low.includes('hi'))reply="Hello Boss Emmy! STAR V4 listening.";else if(low.includes('whatsapp')){reply="Opening WhatsApp Boss...";openApp('whatsapp')}else if(low.includes('tiktok')){reply="Opening TikTok Boss...";openApp('tiktok')}else if(low.includes('facebook')){reply="Opening Facebook Boss...";openApp('facebook')}else if(low.includes('youtube')){reply="Opening YouTube Boss...";openApp('youtube')}else if(low.includes('weather')){reply="Checking Laredo weather...";getWeather()}else if(low.includes('joke'))reply="Why did STAR go to school? To improve his bytes! 😂";else if(low.includes('who are you'))reply="I am STAR V4, your Siri-style assistant built by you in Laredo TX.";else if(low.includes('thank'))reply="Anytime Boss.";box.innerHTML+=`<div class="msg">⭐ STAR: ${reply}</div>`;speak(reply);inp.value='';box.scrollTop=box.scrollHeight}
+function voiceChat(){let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){alert('Voice not supported');return}let r=new SR();r.onresult=e=>{document.getElementById('chatInput').value=e.results[0][0].transcript;sendChat()};r.start()}
+let wakeOn=false, wakeRec=null;
+function toggleWake(){
+  let SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){alert('Voice not supported on this phone, use Chrome');return}
+  let status=document.getElementById('wakeStatus');
+  if(!wakeOn){
+    wakeOn=true;status.innerHTML='🟢 WAKE MODE: ON - Say "HEY STAR" anytime';status.style.background='#003300';status.style.borderColor='#00ff88';
+    wakeRec=new SR();wakeRec.continuous=true;wakeRec.interimResults=true;wakeRec.lang='en-US';
+    wakeRec.onresult=e=>{
+      let said=e.results[e.results.length-1][0].transcript.toLowerCase();
+      if(said.includes('hey star')||said.includes('hey sta')||said.includes('star')){
+        speak('Yes Boss, I am listening. What do you want?');
+        setTimeout(()=>{voiceChat()},900);
+      }
+    };
+    wakeRec.onend=()=>{if(wakeOn)try{wakeRec.start()}catch(e){}};
+    wakeRec.onerror=()=>{if(wakeOn)setTimeout(()=>{try{wakeRec.start()}catch(e){}},1000)};
+    wakeRec.start();speak('Wake mode on Boss. Say Hey Star anytime.');
+  }else{
+    wakeOn=false;if(wakeRec)wakeRec.stop();status.innerHTML='🎤 WAKE MODE: OFF';status.style.background='#33001f';speak('Wake mode off Boss');
+  }
 }
-function quickReply(app,text){
-  if(app==='whatsapp'){window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank')}
-  else{window.open('https://www.facebook.com/messages/?text='+encodeURIComponent(text),'_blank')}
-  speak('Quick reply ready Boss, just tap send');
-}
-function sendChat(){let inp=document.getElementById('chatInput');let txt=inp.value.trim();if(!txt)return;let box=document.getElementById('chatBox');box.innerHTML+=`<div class="msg me">${txt}</div>`;let low=txt.toLowerCase();let reply="Got it Boss. I am STAR V3. Ask me to open whatsapp, tiktok, or facebook.";
-if(low.includes('hello')||low.includes('hi'))reply="Hello Boss Emmy! STAR V3 online. I can open apps and quick-reply for you now. Say open whatsapp!";
-else if(low.includes('open whatsapp')||low.includes('whatsapp')){reply="Opening WhatsApp Boss...";openApp('whatsapp')}
-else if(low.includes('tiktok')){reply="Opening TikTok Boss...";openApp('tiktok')}
-else if(low.includes('facebook')){reply="Opening Facebook Boss...";openApp('facebook')}
-else if(low.includes('youtube')){reply="Opening YouTube Boss...";openApp('youtube')}
-else if(low.includes('who are you'))reply="I am STAR V3 - Smart Tech Assistant Response, built by you, Emmy, in Laredo TX. Your personal Jarvis with App Control.";
-else if(low.includes('weather')){reply="Checking Laredo weather...";getWeather()}
-else if(low.includes('time'))reply="Boss, time is "+new Date().toLocaleTimeString();
-else if(low.includes('joke'))reply="Why did STAR go to school? To improve his bytes! 😂";
-else if(low.includes('thank'))reply="Anytime Boss. That's what STAR is for!";
-box.innerHTML+=`<div class="msg">⭐ STAR: ${reply}</div>`;speak(reply);inp.value='';box.scrollTop=box.scrollHeight}
-function voiceChat(){let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){alert('Voice not supported, type instead');return}let r=new SR();r.onresult=e=>{document.getElementById('chatInput').value=e.results[0][0].transcript;sendChat()};r.start()}
 let flashOn=false, stream=null;
-async function toggleFlash(){try{if(!flashOn){stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});let track=stream.getVideoTracks()[0];await track.applyConstraints({advanced:[{torch:true}]});flashOn=true;speak('Flashlight on Boss')}else{stream.getTracks().forEach(t=>t.stop());flashOn=false;speak('Flashlight off')}}catch(e){alert('Flashlight needs camera permission')}}
+async function toggleFlash(){try{if(!flashOn){stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});let track=stream.getVideoTracks()[0];await track.applyConstraints({advanced:[{torch:true}]});flashOn=true;speak('Flashlight on')}else{stream.getTracks().forEach(t=>t.stop());flashOn=false}}catch(e){alert('Flashlight needs camera permission')}}
 </script>
 </body>
 </html>
