@@ -3,122 +3,90 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#000000">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<title>STAR V4 // SIRI MODE</title>
+<title>EMI AI STAR - Emmy Ai</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#000;color:#00ff88;font-family:monospace;padding:12px;padding-bottom:80px}
-.top{display:flex;justify-content:space-between;align-items:center;border:1px solid #00ff88;padding:10px;border-radius:10px}
-.top b{font-size:18px;letter-spacing:2px}.live{color:#00ff00}
-.eyes{display:flex;justify-content:center;gap:20px;margin:18px 0}
-.eye{width:110px;height:110px;background:#001a0f;border:3px solid #00ff88;border-radius:50%;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 0 25px #00ff88}
-.pupil{width:48px;height:48px;background:#00ff88;border-radius:50%;box-shadow:0 0 20px #00ff88}
-.card{border:1px solid #00ff88;border-radius:12px;padding:12px;margin:12px 0;background:#02120a}
-.card h3{margin:0 0 10px;color:#fff}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.stat{border:1px solid #00ff8855;padding:10px;border-radius:8px;text-align:center}
-.stat b{font-size:20px;display:block;color:#fff}
-button{width:100%;padding:13px;margin:6px 0;background:#00ff88;color:#000;border:none;border-radius:10px;font-weight:900;font-size:15px}
-button.out{background:transparent;color:#00ff88;border:1px solid #00ff88}
-button.app{background:#0a2a1a;color:#fff;border:1px solid #00ff88;font-size:14px;padding:16px 5px}
-button.wake{background:#ff00aa;color:#fff}
-input{width:100%;padding:13px;border-radius:10px;border:1px solid #00ff88;background:#000;color:#fff;font-size:16px}
-#chatBox{max-height:220px;overflow-y:auto;margin-bottom:10px}
-.msg{padding:8px 10px;border-radius:8px;margin:6px 0;background:#022a18}
-.msg.me{background:#0a3a2a;text-align:right}
-.small{font-size:12px;opacity:.8}
-.apps{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-#wakeStatus{text-align:center;padding:8px;border-radius:8px;margin:10px 0;background:#33001f;border:1px solid #ff00aa}
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+  body{background:#050a05;color:#fff;overflow-x:hidden}
+  .hero{
+    min-height:100vh;
+    background:linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.75)), url('star-hero.jpg');
+    background-size:cover;background-position:center top;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    padding:28px 20px 32px;
+  }
+  .badge{
+    display:inline-block;background:#00ff88;color:#000;
+    font-weight:900;padding:6px 14px;border-radius:999px;
+    font-size:13px;letter-spacing:1px;width:fit-content;
+  }
+  h1{font-size:52px;line-height:.95;margin:14px 0 8px;text-shadow:0 4px 20px #000}
+  h1 span{color:#00ff88}
+  p{font-size:17px;opacity:.92;max-width:520px;line-height:1.5}
+  .btns{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+  .btn{padding:15px 22px;border-radius:999px;font-weight:900;border:0;font-size:16px;cursor:pointer}
+  .btn-green{background:#00ff88;color:#000}
+  .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(8px)}
+  .bar{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+  .chip{background:rgba(0,0,0,.55);border:1px solid rgba(0,255,136,.4);padding:8px 12px;border-radius:999px;font-size:13px}
+  .section{padding:28px 20px}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+  .card{background:#0d1a12;border:1px solid #1e3a2a;padding:16px;border-radius:18px}
+  .card b{color:#00ff88}
+  .card p{font-size:14px;margin-top:6px}
+  footer{padding:20px;text-align:center;opacity:.6;font-size:13px}
+  @media(min-width:700px){h1{font-size:78px}.hero{padding:40px}}
 </style>
 </head>
 <body>
-<div class="top"><div><b>STAR V4 // SIRI MODE</b><div class="small">EMMY AI - LAREDO TX</div></div><div class="live">● LIVE</div></div>
-<div class="eyes"><div class="eye"><div class="pupil" id="p1"></div></div><div class="eye"><div class="pupil" id="p2"></div></div></div>
-<div id="wakeStatus">🎤 WAKE MODE: OFF - Tap below to activate</div>
-<center><button class="wake" onclick="toggleWake()">🎤 WAKE MODE ON - SAY "HEY STAR"</button></center>
-<center><button onclick="speakStatus()">🔊 SAY: STAR, STATUS</button></center>
 
-<div class="card"><h3>📊 DASHBOARD</h3><div class="grid">
-<div class="stat"><span>CPU</span><b id="cpu">-</b></div>
-<div class="stat"><span>RAM</span><b id="ram">-</b></div>
-<div class="stat"><span>BATTERY</span><b id="bat">-</b></div>
-<div class="stat"><span>SCREEN</span><b id="scr">-</b></div>
-</div><div class="small" id="time" style="text-align:center;margin-top:8px"></div></div>
-
-<div class="card"><h3>🌦️ LAREDO WEATHER</h3><div id="weather">Loading...</div><button class="out" onclick="getWeather()">🔄 Refresh</button></div>
-
-<div class="card"><h3>💬 CHAT WITH STAR</h3><div id="chatBox"><div class="msg">Hello Boss Emmy! I am STAR V4 SIRI MODE. Turn on Wake Mode and just say HEY STAR.</div></div><input id="chatInput" placeholder="Type or Speak..." onkeydown="if(event.key==='Enter')sendChat()"><button onclick="sendChat()">SEND TO STAR ➤</button><button class="out" onclick="voiceChat()">🎤 Speak Once</button></div>
-
-<div class="card"><h3>📱 ALL APPS</h3><div class="apps">
-<button class="app" onclick="openApp('whatsapp')">💬<br>WhatsApp</button>
-<button class="app" onclick="openApp('facebook')">📘<br>Facebook</button>
-<button class="app" onclick="openApp('tiktok')">🎵<br>TikTok</button>
-<button class="app" onclick="openApp('instagram')">📸<br>Instagram</button>
-<button class="app" onclick="openApp('youtube')">▶️<br>YouTube</button>
-<button class="app" onclick="openApp('gmail')">📧<br>Gmail</button>
-<button class="app" onclick="openApp('maps')">📍<br>Maps</button>
-<button class="app" onclick="openApp('camera')">📷<br>Camera</button>
-<button class="app" onclick="openApp('phone')">📞<br>Phone</button>
-</div></div>
-
-<div class="card"><h3>💬 QUICK REPLIES</h3>
-<button onclick="quickReply('whatsapp','Hey Boss is busy right now, will reply soon 🔥 - STAR')">WhatsApp: I'm busy</button>
-<button onclick="quickReply('whatsapp','On my way Boss! Give me 10 mins 🙏')">WhatsApp: On my way</button>
-<button onclick="quickReply('facebook','Hey! Saw your message, will reply soon Boss 💪')">Facebook: Saw your message</button>
+<div class="hero">
+  <div class="badge">● EMI AI STAR • LIVE</div>
+  <h1>EMI AI<br><span>STAR</span></h1>
+  <p>Your AI King. Ask me anything. I talk, I listen, I remember, I work for you — like JARVIS, but it's STAR.</p>
+  <div class="btns">
+    <button class="btn btn-green" onclick="talk()">🎤 TALK TO STAR</button>
+    <button class="btn btn-ghost" onclick="chat()">💬 CHAT NOW</button>
+  </div>
+  <div class="bar">
+    <div class="chip">👑 King Mode</div>
+    <div class="chip">🌇 Futuristic City</div>
+    <div class="chip">⭐ STAR Power</div>
+  </div>
 </div>
 
-<div class="card"><h3>🎵 MUSIC</h3>
-<button onclick="window.open('https://www.youtube.com/results?search_query=afrobeats+2026','_blank')">🔥 Afrobeats Hits</button>
-<button onclick="window.open('https://www.youtube.com/results?search_query=amapiano+mix','_blank')">🎹 Amapiano</button>
-<button onclick="window.open('https://www.youtube.com/results?search_query=gospel+music+nigeria','_blank')">🙏 Gospel</button>
+<div class="section">
+  <h2>What STAR Can Do</h2>
+  <div class="cards">
+    <div class="card"><b>🎤 Voice</b><p>Say "Hey Star" and STAR listens and talks back.</p></div>
+    <div class="card"><b>💬 Chat</b><p>Chat, ask questions, get answers fast.</p></div>
+    <div class="card"><b>🌦 Weather</b><p>Live weather for Laredo and anywhere.</p></div>
+    <div class="card"><b>📱 Apps</b><p>Open WhatsApp, TikTok, YouTube, Maps in one tap.</p></div>
+  </div>
 </div>
 
-<div class="card"><h3>🦾 JARVIS CONTROL</h3>
-<button onclick="window.location.href='tel:'">📞 Call</button>
-<button onclick="if(navigator.vibrate)navigator.vibrate(300);speak('Vibrating Boss')">📳 Vibrate</button>
-<button onclick="toggleFlash()">🔦 Flashlight</button>
+<div class="section" id="chatBox" style="display:none">
+  <h2>Chat With STAR</h2>
+  <div id="msgs" style="background:#0a1510;border-radius:16px;padding:14px;min-height:120px;margin-top:12px"></div>
+  <input id="inp" placeholder="Ask STAR..." style="width:100%;padding:14px;border-radius:999px;border:1px solid #333;background:#111;color:#fff;margin-top:10px">
+  <button class="btn btn-green" style="width:100%;margin-top:10px" onclick="send()">Send</button>
 </div>
+
+<footer>© 2026 EMI AI STAR • Built by Boss Emmy</footer>
 
 <script>
-let pupils=[document.getElementById('p1'),document.getElementById('p2')];
-document.addEventListener('mousemove',e=>{let dx=(e.clientX/window.innerWidth-0.5)*30, dy=(e.clientY/window.innerHeight-0.5)*30; pupils.forEach(p=>p.style.transform=`translate(${dx}px,${dy}px)`)});
-function speak(t){speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);speechSynthesis.speak(u)}
-function speakStatus(){speak(`Star V4 online Boss. Battery is ${document.getElementById('bat').innerText}. Wake mode ready.`)}
-document.getElementById('cpu').innerText=navigator.hardwareConcurrency||8;
-document.getElementById('ram').innerText=(navigator.deviceMemory||4)+' GB';
-document.getElementById('scr').innerText=screen.width+'x'+screen.height;
-setInterval(()=>{document.getElementById('time').innerText=new Date().toLocaleString()},1000);
-if(navigator.getBattery)navigator.getBattery().then(b=>{function u(){document.getElementById('bat').innerText=Math.round(b.level*100)+'%'}u();b.onlevelchange=u});
-async function getWeather(){try{let r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=27.5306&longitude=-99.4808&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m&temperature_unit=fahrenheit');let d=await r.json();let c=d.current;document.getElementById('weather').innerHTML=`<b style="font-size:28px;color:#fff">${Math.round(c.temperature_2m)}°F</b> Feels ${Math.round(c.apparent_temperature)}°F<br>💧 ${c.relative_humidity_2m}% | 💨 ${c.wind_speed_10m} mph`}catch(e){document.getElementById('weather').innerText='Offline'}}getWeather();
-function openApp(app){let urls={whatsapp:'https://wa.me/',facebook:'https://www.facebook.com/',tiktok:'https://www.tiktok.com/',instagram:'https://www.instagram.com/',youtube:'https://www.youtube.com/',gmail:'https://mail.google.com/',maps:'https://maps.google.com/?q=Laredo+TX',phone:'tel:'};speak('Opening '+app+' Boss');if(app==='camera'){alert('Open Camera from phone');return}if(app==='phone'){window.location.href='tel:';return}window.open(urls[app],'_blank')}
-function quickReply(app,text){if(app==='whatsapp')window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');else window.open('https://www.facebook.com/messages/','_blank');speak('Quick reply ready Boss')}
-function sendChat(){let inp=document.getElementById('chatInput');let txt=inp.value.trim();if(!txt)return;let box=document.getElementById('chatBox');box.innerHTML+=`<div class="msg me">${txt}</div>`;let low=txt.toLowerCase();let reply="Got it Boss.";if(low.includes('hello')||low.includes('hi'))reply="Hello Boss Emmy! STAR V4 listening.";else if(low.includes('whatsapp')){reply="Opening WhatsApp Boss...";openApp('whatsapp')}else if(low.includes('tiktok')){reply="Opening TikTok Boss...";openApp('tiktok')}else if(low.includes('facebook')){reply="Opening Facebook Boss...";openApp('facebook')}else if(low.includes('youtube')){reply="Opening YouTube Boss...";openApp('youtube')}else if(low.includes('weather')){reply="Checking Laredo weather...";getWeather()}else if(low.includes('joke'))reply="Why did STAR go to school? To improve his bytes! 😂";else if(low.includes('who are you'))reply="I am STAR V4, your Siri-style assistant built by you in Laredo TX.";else if(low.includes('thank'))reply="Anytime Boss.";box.innerHTML+=`<div class="msg">⭐ STAR: ${reply}</div>`;speak(reply);inp.value='';box.scrollTop=box.scrollHeight}
-function voiceChat(){let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){alert('Voice not supported');return}let r=new SR();r.onresult=e=>{document.getElementById('chatInput').value=e.results[0][0].transcript;sendChat()};r.start()}
-let wakeOn=false, wakeRec=null;
-function toggleWake(){
-  let SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!SR){alert('Voice not supported on this phone, use Chrome');return}
-  let status=document.getElementById('wakeStatus');
-  if(!wakeOn){
-    wakeOn=true;status.innerHTML='🟢 WAKE MODE: ON - Say "HEY STAR" anytime';status.style.background='#003300';status.style.borderColor='#00ff88';
-    wakeRec=new SR();wakeRec.continuous=true;wakeRec.interimResults=true;wakeRec.lang='en-US';
-    wakeRec.onresult=e=>{
-      let said=e.results[e.results.length-1][0].transcript.toLowerCase();
-      if(said.includes('hey star')||said.includes('hey sta')||said.includes('star')){
-        speak('Yes Boss, I am listening. What do you want?');
-        setTimeout(()=>{voiceChat()},900);
-      }
-    };
-    wakeRec.onend=()=>{if(wakeOn)try{wakeRec.start()}catch(e){}};
-    wakeRec.onerror=()=>{if(wakeOn)setTimeout(()=>{try{wakeRec.start()}catch(e){}},1000)};
-    wakeRec.start();speak('Wake mode on Boss. Say Hey Star anytime.');
-  }else{
-    wakeOn=false;if(wakeRec)wakeRec.stop();status.innerHTML='🎤 WAKE MODE: OFF';status.style.background='#33001f';speak('Wake mode off Boss');
+function talk(){
+  alert('Hey Boss! STAR is listening... Say HEY STAR');
+  if('speechSynthesis' in window){
+    let u = new SpeechSynthesisUtterance('Yes Boss, I am listening. I am STAR, your AI King.');
+    speechSynthesis.speak(u);
   }
 }
-let flashOn=false, stream=null;
-async function toggleFlash(){try{if(!flashOn){stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});let track=stream.getVideoTracks()[0];await track.applyConstraints({advanced:[{torch:true}]});flashOn=true;speak('Flashlight on')}else{stream.getTracks().forEach(t=>t.stop());flashOn=false}}catch(e){alert('Flashlight needs camera permission')}}
+function chat(){ document.getElementById('chatBox').style.display='block'; window.scrollTo(0,document.body.scrollHeight); }
+function send(){
+  let i=document.getElementById('inp'); if(!i.value) return;
+  document.getElementById('msgs').innerHTML += '<p><b>You:</b> '+i.value+'</p><p style="color:#00ff88"><b>STAR:</b> Yes Boss! I got you. STAR is here for you 👑</p>';
+  i.value='';
+}
 </script>
 </body>
 </html>
