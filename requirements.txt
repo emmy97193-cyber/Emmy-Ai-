@@ -1,4 +1,1 @@
-Flask
-requests
-APScheduler
-pytz
+Flask==3.0.0
