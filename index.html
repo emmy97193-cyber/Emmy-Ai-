@@ -1,92 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EMI AI STAR - Emmy Ai</title>
+<title>EMMY-AI - BOSS MODE</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-  body{background:#050a05;color:#fff;overflow-x:hidden}
-  .hero{
-    min-height:100vh;
-    background:linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.75)), url('star-hero.jpg');
-    background-size:cover;background-position:center top;
-    display:flex;flex-direction:column;justify-content:flex-end;
-    padding:28px 20px 32px;
-  }
-  .badge{
-    display:inline-block;background:#00ff88;color:#000;
-    font-weight:900;padding:6px 14px;border-radius:999px;
-    font-size:13px;letter-spacing:1px;width:fit-content;
-  }
-  h1{font-size:52px;line-height:.95;margin:14px 0 8px;text-shadow:0 4px 20px #000}
-  h1 span{color:#00ff88}
-  p{font-size:17px;opacity:.92;max-width:520px;line-height:1.5}
-  .btns{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
-  .btn{padding:15px 22px;border-radius:999px;font-weight:900;border:0;font-size:16px;cursor:pointer}
-  .btn-green{background:#00ff88;color:#000}
-  .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(8px)}
-  .bar{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
-  .chip{background:rgba(0,0,0,.55);border:1px solid rgba(0,255,136,.4);padding:8px 12px;border-radius:999px;font-size:13px}
-  .section{padding:28px 20px}
-  .cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
-  .card{background:#0d1a12;border:1px solid #1e3a2a;padding:16px;border-radius:18px}
-  .card b{color:#00ff88}
-  .card p{font-size:14px;margin-top:6px}
-  footer{padding:20px;text-align:center;opacity:.6;font-size:13px}
-  @media(min-width:700px){h1{font-size:78px}.hero{padding:40px}}
+body{background:black;color:gold;text-align:center;font-family:sans-serif;padding-top:80px}
+.dragon{font-size:100px;animation:fly 2s infinite}
+@keyframes fly{0%{transform:translateY(0)}50%{transform:translateY(-30px)}100%{transform:translateY(0)}}
+button{background:gold;color:black;padding:15px 30px;font-size:20px;border:none;border-radius:10px}
 </style>
 </head>
 <body>
-
-<div class="hero">
-  <div class="badge">● EMI AI STAR • LIVE</div>
-  <h1>EMI AI<br><span>STAR</span></h1>
-  <p>Your AI King. Ask me anything. I talk, I listen, I remember, I work for you — like JARVIS, but it's STAR.</p>
-  <div class="btns">
-    <button class="btn btn-green" onclick="talk()">🎤 TALK TO STAR</button>
-    <button class="btn btn-ghost" onclick="chat()">💬 CHAT NOW</button>
-  </div>
-  <div class="bar">
-    <div class="chip">👑 King Mode</div>
-    <div class="chip">🌇 Futuristic City</div>
-    <div class="chip">⭐ STAR Power</div>
-  </div>
-</div>
-
-<div class="section">
-  <h2>What STAR Can Do</h2>
-  <div class="cards">
-    <div class="card"><b>🎤 Voice</b><p>Say "Hey Star" and STAR listens and talks back.</p></div>
-    <div class="card"><b>💬 Chat</b><p>Chat, ask questions, get answers fast.</p></div>
-    <div class="card"><b>🌦 Weather</b><p>Live weather for Laredo and anywhere.</p></div>
-    <div class="card"><b>📱 Apps</b><p>Open WhatsApp, TikTok, YouTube, Maps in one tap.</p></div>
-  </div>
-</div>
-
-<div class="section" id="chatBox" style="display:none">
-  <h2>Chat With STAR</h2>
-  <div id="msgs" style="background:#0a1510;border-radius:16px;padding:14px;min-height:120px;margin-top:12px"></div>
-  <input id="inp" placeholder="Ask STAR..." style="width:100%;padding:14px;border-radius:999px;border:1px solid #333;background:#111;color:#fff;margin-top:10px">
-  <button class="btn btn-green" style="width:100%;margin-top:10px" onclick="send()">Send</button>
-</div>
-
-<footer>© 2026 EMI AI STAR • Built by Boss Emmy</footer>
-
-<script>
-function talk(){
-  alert('Hey Boss! STAR is listening... Say HEY STAR');
-  if('speechSynthesis' in window){
-    let u = new SpeechSynthesisUtterance('Yes Boss, I am listening. I am STAR, your AI King.');
-    speechSynthesis.speak(u);
-  }
-}
-function chat(){ document.getElementById('chatBox').style.display='block'; window.scrollTo(0,document.body.scrollHeight); }
-function send(){
-  let i=document.getElementById('inp'); if(!i.value) return;
-  document.getElementById('msgs').innerHTML += '<p><b>You:</b> '+i.value+'</p><p style="color:#00ff88"><b>STAR:</b> Yes Boss! I got you. STAR is here for you 👑</p>';
-  i.value='';
-}
-</script>
+<div class="dragon">🐉</div>
+<h1>EMMY-AI</h1>
+<h3>BOSS MODE - ONLINE</h3>
+<p>Hi Boss, I'm EMMY-AI. I'm live on Railway.</p>
+<button onclick="alert('Hi Boss, I am EMMY-AI!')">TALK TO EMMY-AI</button>
 </body>
 </html>
