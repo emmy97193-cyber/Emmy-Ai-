@@ -15,7 +15,7 @@ button{background:gold;color:black;padding:13px 18px;border:none;border-radius:1
 </style>
 </head>
 <body>
-<div class="star">🌟.🪄</div>
+<div class="star">🌟</div>
 <h1>EMMY-AI</h1>
 <h3>BOSS MODE - ONLINE</h3>
 <div id="chat"><p><b>EMMY-AI:</b> Hi Boss, I be star now 🌟 Ask me anything!</p></div>
@@ -40,10 +40,9 @@ function send(){
 </script>
 </body>
 </html>
-</magic>
 """
 @app.route("/")
-def home((..)):
+def home():
     return HTML
 if __name__ == "__main__":
     port=int(os.environ.get("PORT",8080))
