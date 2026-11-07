@@ -17,7 +17,7 @@ def home():
     </style>
     </head>
     <body>
-    <div class="dragon">🐉</div>
+    <div class="dragon">🌟</div>
     <h1>EMMY-AI</h1>
     <h3>BOSS MODE - ONLINE</h3>
     <p>Hi Boss, I'm EMMY-AI. I'm live on Railway.</p>
